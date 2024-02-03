@@ -187,6 +187,7 @@ public class MyUtil {
 		
 		int comma_len = (origin_arr.length%3==0)?origin_arr.length/3-1:origin_arr.length/3;
 		char[] result_arr = new char[origin_arr.length + comma_len];
+		// 콤마(,)의 개수를 포함하면 배열길이가 늘어나므로 새로운 배열타입 선언
 		/*
 			-------------------------------------
 			| 2 | , | 5 | 0 | 0 | , | 0 | 0 | 0 |	// 7%3 = 2
@@ -197,10 +198,10 @@ public class MyUtil {
 		 */
 		
 		for(int i=origin_arr.length-1, j=result_arr.length-1, count=1 ; i>=0; i--, j--, count++) {	// 길이-1 : 맨마지막 index	반복허용 i>=0
-			if(count%4 != 0) {
+			if(count%4 != 0) {	// 4에 , 가 들어가니까 4가 아니면
 				result_arr[j] = origin_arr[i];	// result arr 은 , 가 있고 origin_arr 은 , 가 없기에 길이가 다르다.
 			// i가 반복되어지는 횟수, j는 값 count 몇번재인지 확인
-			} else {
+			} else {	// , 가 들어갈경우 count 4
 				result_arr[j] = ',';
 				i++; 	// , 이 들어서면 i가 증감식으로 i-- 되기때문에 i++를 해줘야 제자리가 된다.(유사 로또)
 			//|'2'|','|'5'|'0'|'0'|','|'0'|'0'|'0'|	// char 타입이기에 공백이 들어옴
