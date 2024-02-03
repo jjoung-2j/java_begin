@@ -48,7 +48,7 @@ public class Main_gujikja {
 	    ////////////////////////////////////////////////////////////////////////
 	    
 	    Scanner sc = new Scanner(System.in);
-	    Ctrl_gujikja ctrl = new Ctrl_gujikja();
+	    Ctrl_gujikja ctrl = new Ctrl_gujikja();	// ctrl에 있는 메소드 사용하기 위해 가져옴
 	    
 	    String str_menuno ="";
 	    do {
