@@ -41,10 +41,11 @@ public class Ctrl_gujikja {
 						System.out.println(">> 아이디는 필수 입력사항 입니다. <<\n");
 						isUse_userid = false;
 					}
-					//1.if(userid.equals(gu_arr)) {
+					//1.if(userid.equals(gu_arr[i].userid)) {	// string 타입으로 맞추어주기
 					//	System.out.println("다른것을 입력해주세요");
-					//	continue;
-					//}
+					//	isUse_userid = false;
+					//	break;
+					//  }
 					else {
 						for(int i=0; i<Gujikja.count; i++) {
 							if(userid.equals(gu_arr[i].userid)){
@@ -54,7 +55,6 @@ public class Ctrl_gujikja {
 							}
 						}	// end of for----------------
 					}
-		//1.}while(true);
 		}while(!isUse_userid);	// end of do~while-----------------------------
 			
 		// 비밀번호는 필수 입력사항이면서 비밀번호 조건에 맞을때까지 반복해야 한다.
@@ -83,7 +83,7 @@ public class Ctrl_gujikja {
 				for(int i=0; i<name.length(); i++) {
 					if(!('가'<=name.charAt(i) && name.charAt(i)<='힣')) {
 						isUse_name = false;
-						System.out.println("[경고] 성명은 공백없이 한글로만 2글자 이상 6글자 이하이어야 합니다.");
+						System.out.println("[경고] 성명은 공백없이 한글로만 입력하셔야 합니다.");
 						break;
 					}
 				}	// end of for-----------
@@ -290,7 +290,7 @@ public class Ctrl_gujikja {
 				System.out.println(sb.toString());
 			}
 			else {
-				System.out.println("[검색결과 연령대 " + str_ageLine+ "대인 구직자는 없습니다.");
+				System.out.println("[검색결과 연령대 " + str_ageLine+ "대인 구직자는 없습니다.]");
 			}
 			
 		}	// end of if~else---------------------------
