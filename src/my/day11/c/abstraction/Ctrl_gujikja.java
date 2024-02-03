@@ -370,10 +370,10 @@ public class Ctrl_gujikja {
 					case "60":
 					case "70":
 					case "80":
-					isUse_ageLine_gender = true;
+						isUse_ageLine_gender = true;
 					break;
 					default:
-					System.out.println("[경고] 올바른 연령대를 입력하세요!!\n");
+						System.out.println("[경고] 올바른 연령대를 입력하세요!!\n");
 					break outer;
 					}	// end of switch(str_ageLine)----------------------------
 					
@@ -394,7 +394,7 @@ public class Ctrl_gujikja {
 						System.out.println("[검색결과 연령대 " + str_ageLine+ "대인 구직자는 없습니다.");
 						break outer;
 					}	
-					gender:
+					
 					do {	// 다시 성별을 고르게 하기 위해 do~while 과 레이블을 넣음		// 다시 구하지 않을 경우 빼면된다.
 						System.out.print("▷ 검색하고자 하는 성별 [남/여] => ");
 						str_gender = sc.nextLine();
@@ -426,10 +426,10 @@ public class Ctrl_gujikja {
 							System.out.println(sb.toString());
 						}
 						else {
-							System.out.println("[검색결과 성별 " + str_gender+ "자 구직자는 없습니다.]");
-							continue gender;	// 다시 성별을 고르고 싶을 경우
+							System.out.println("[검색결과 " + str_gender+ "자 구직자는 없습니다.]");
 						}
-					} while(true);	// end of do~while----------------
+					} while(!isSearch);	// end of do~while----------------
+					// 검색결과를 도출하지 못할 경우 성별만 다시 뽑을 수 있도록 설정
 				} while (!isUse_ageLine_gender);	// end of do~while----------------------
 			}	// end of if~else-------------------------
 		}	// end of void search_ageLine_gender(Scanner sc, Gujikja[] gu_arr)
