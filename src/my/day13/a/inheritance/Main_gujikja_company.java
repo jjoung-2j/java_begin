@@ -55,6 +55,18 @@ public class Main_gujikja_company {
 	    cp_arr[Company.count++] = cp2;
 
 	    ///////////////////////////////////////////////////////////////////////
+	    
+	    Recruit[] rc_arr = new Recruit[10];		// 사원모집 10개 가능하도록 설정
+	    										// 지금은 배열, 나중에는 무한대 ㄱㄱ
+	    Recruit rc1 = new Recruit();
+	    rc1.setCp(cp1);					// 삼성이라고 설정
+	    rc1.setWork_type("연구직");
+	    rc1.setCnt(5);
+	    rc1.setFinish_day("2024-02-08");
+	    rc_arr[Recruit.count++] = rc1;
+	    
+	    ////////////////////////////////////////////////////////////////////////
+	    
 	    Scanner sc = new Scanner(System.in);
 	    Ctrl_common ctrl_common = new Ctrl_common();
 	    Ctrl_gujikja ctrl_gu = new Ctrl_gujikja();
@@ -84,7 +96,15 @@ public class Main_gujikja_company {
 				}
 				break;	// switch 문을 빠져나간다.
 			case "4":	// 구인회사 로그인
-				//Company login_cp = ctrl_cp_login(cp_arr);
+				Company login_cp = ctrl_cp_login(sc, cp_arr);
+				
+				if(login_cp != null) {
+					System.out.println(">> 구인회사 " + login_cp.getName() +"기업 로그인 성공 ^^ <<\n");
+					ctrl_cp.cp_menu(sc,login_cp,gu_arr,rc_arr);	// 구인회사 전용메뉴
+																// 구인회사는 구직자를 search , 모집공고 올림
+				} else {
+					System.out.println(">> 구인회사로 로그인 실패 ㅜㅜ <<\n");
+				}
 				break;
 			case "5":	// 프로그램 종료
 				break;
@@ -98,5 +118,21 @@ public class Main_gujikja_company {
 	    System.out.println("\n>>> 프로그램 종료 <<<");
 	    
 	}	// end of main()-----------------------
+
+	// 구인회사 로그인
+	private static Company ctrl_cp_login(Scanner sc, Company[] cp_arr) {
+		
+		System.out.print("▷ 구인회사 ID : ");
+		String id = sc.nextLine();
+		System.out.print("▷ 비밀번호 : ");
+		String passwd = sc.nextLine();
+		
+		for(int i=0; i<Company.count; i++) {
+			if(id.equals(cp_arr[i].getId()) && passwd.equals(cp_arr[i].getPasswd() )) {
+				return cp_arr[i];	// 메소드의 종료
+			}	
+		}	// end of for---------
+		return null;
+	}	// end of private static Company ctrl_cp_login(Scanner sc, Company[] cp_arr)--------
 
 }

@@ -88,9 +88,13 @@ public class MyUtil {
 		for(int i=0;i<length;i++) {
 			// 암호에 한글이 들어가 있는지 알아본다.
 			char ch = passwd.charAt(i);
-			if('가' <= ch && ch <= '힣') {
+			if('가' <= ch && ch <= '힣') {	// 한글이 들어가지 않게한다.
 				return false;
 			}
+			// 강사님 X
+			// 혼자 추가해보기
+			if(' ' == ch)
+				return false;
 			
 			if(Character.isUpperCase(ch))	// 영문대문자일 경우
 				flag_upper = true;
@@ -212,13 +216,10 @@ public class MyUtil {
 		// 하나 이어야 한다.
 		if(jubun.length() != 7) {
 			return false;
-		}
-		
-		else if( !("1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)) ||
+		} else if( !("1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)) ||
 				"3".equals(jubun.substring(6)) || "4".equals(jubun.substring(6)) )) {
 			return false;
-		}
-		else {
+		} else {	// 주민번호가 7자리이며, 마지막수가 1234일경우
 			String str_birthday = "";	// 생년월일	(String 타입)
 			if("1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)))
 				str_birthday = "19" + jubun.substring(0,6);		// 예 990520 생년월일

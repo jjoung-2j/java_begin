@@ -79,8 +79,14 @@ public class CommonMember {
 			if(MyUtil.isCheckPasswd(passwd)) {
 				this.passwd = passwd;
 			} else {
-				System.out.println("[경고] 비밀번호는 영대문자, 영소문자, 숫자, 특수문자가 혼합된 최소 8글자 이상 최대 15글자 이하이어야 합니다.\n");
+				System.out.println("[경고] 비밀번호는 영대문자, 영소문자, 숫자, 특수문자가 혼합된 최소 8글자 이상 최대 15글자 이하이어야 합니다.");
 			}	// end of if~else--------------------
+			for(int i=0;i<passwd.length();i++) {
+				// 암호에 한글이 들어가 있는지 알아본다.
+				char ch = passwd.charAt(i);
+				if(ch == ' ') 
+					System.out.println("[경고] 공백을 빼고 입력해주세요.\n");
+			}	// end of for-----
 		}	// end of public void setPasswd(String passwd)----------------
 		
 		public String getPasswd() {

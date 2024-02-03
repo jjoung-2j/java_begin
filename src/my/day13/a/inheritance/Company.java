@@ -75,8 +75,19 @@ public class Company extends CommonMember{
 			}
 			this.seed_money = seed_money;	
 		}	// end of public void setSeed_money(long seed_money)------------------
-		
-		
+
+		// === 회사의 정보를 한줄로 출력해주는 메소드 생성하기 ===
+		String getInfo() {
+			// 회사명
+			StringBuilder sb = new StringBuilder();		// 정보 쌓기
+
+			sb.append(super.getName() + "\t");	// 회사명
+			sb.append(getJob_type() + "\t");	// 업종
+			sb.append(getBusiness_number() + "\t");	// 사업자등록번호
+			sb.append(getRegister_day().substring(0,10) + "\t");	// 자본금
+			
+			return sb.toString();
+		}	// end of String getInfo()
 				
 		
 }	// end of Company---------------------------

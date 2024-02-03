@@ -143,23 +143,6 @@ public class Main_String {
 	    	 */
     	}
     }	// end of for-------------
-    
-    //	비교하기(에러)
-    /*
-    int file = 0;
-    String filename = "";
-
-	for(int j=pathFileNameArr.length-1; j=0; j--) {
-	   file = pathFileNameArr[j].indexOf("/");
-	}
-	
-    System.out.println(file);
-    
-    for(int i=0; i<pathFileNameArr.length; i++) {
-    	filename = pathFileNameArr[i].substring(file);
-    	System.out.println(filename);
-    }
-	*/
 
     // === 6. "문자열".lastindexOf("찾을문자열") ====
     //        "문자열" 에서 마지막으로 나오는 "찾을문자열"의 인덱스(int)를 알려준다.
@@ -184,6 +167,7 @@ public class Main_String {
             "D:/mymusic.mp3",
             "C:/photo/내얼굴.jpg"};
     */
+    
     for(int i=0; i<pathFileNameArr.length; i++) {
     	int idx = pathFileNameArr[i].lastIndexOf("/");	//pathFileNameArr[i] : 글자 한개
     	if(idx != -1) {	
