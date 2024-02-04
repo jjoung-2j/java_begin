@@ -113,7 +113,7 @@ import my.util.MyUtil;
 				// >> 정규표현식(Regular Expression)이란? <<
 				// ==> 특정한 규칙을 가진 문자열의 집합을 표현하기 위해 쓰이는 형식언어
 				
-				// == 1. 정규표현식(Regular Expresiion) 패턴을 작성한다. == //
+				// == 1. 정규표현식(Regular Expression) 패턴을 작성한다. == //
 				Pattern p = Pattern.compile("^[A-Za-z][A-Za-z0-9]{2,9}$");		// [A-Za-z0-9] 가 {a,b} 최소 a 번 반복, 최대 b 번 반복
 				// ^ 은 시작을 의미한다.
 				// $ 는 끝을 의미한다.
