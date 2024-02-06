@@ -408,9 +408,11 @@ public class Ctrl_gujikja {
 							break;
 						default:
 							System.out.println("[경고] \"남\" 또는 \"여\" 만 입력하세요!!\n");
-							break;
+							isUse_ageLine_gender = false;
 						}	// end of switch(input_gender.trim())----------------------------
-						
+					} while(!isUse_ageLine_gender);
+					
+					do {
 						isSearch = false;
 						
 						for(int i=0; i<Gujikja.count; i++) {

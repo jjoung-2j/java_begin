@@ -96,7 +96,7 @@ public class Main_gujikja_company {
 				}
 				break;	// switch 문을 빠져나간다.
 			case "4":	// 구인회사 로그인
-				Company login_cp = ctrl_cp_login(sc, cp_arr);
+				Company login_cp = ctrl_cp.login(sc, cp_arr);
 				
 				if(login_cp != null) {
 					System.out.println(">> 구인회사 " + login_cp.getName() +"기업 로그인 성공 ^^ <<\n");
@@ -118,21 +118,5 @@ public class Main_gujikja_company {
 	    System.out.println("\n>>> 프로그램 종료 <<<");
 	    
 	}	// end of main()-----------------------
-
-	// 구인회사 로그인
-	private static Company ctrl_cp_login(Scanner sc, Company[] cp_arr) {
-		
-		System.out.print("▷ 구인회사 ID : ");
-		String id = sc.nextLine();
-		System.out.print("▷ 비밀번호 : ");
-		String passwd = sc.nextLine();
-		
-		for(int i=0; i<Company.count; i++) {
-			if(id.equals(cp_arr[i].getId()) && passwd.equals(cp_arr[i].getPasswd() )) {
-				return cp_arr[i];	// 메소드의 종료
-			}	
-		}	// end of for---------
-		return null;
-	}	// end of private static Company ctrl_cp_login(Scanner sc, Company[] cp_arr)--------
 
 }

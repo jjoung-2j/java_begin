@@ -696,13 +696,13 @@ public class Ctrl_gujikja extends Ctrl_common{
 					search_jobtype(sc,cp_arr);
 					break;
 				case 2:	// 자본금검색
-					search_seedmoney_company(sc,cp_arr);	// 강사님꺼적용
+					search_seedmoney(sc,cp_arr);	// 강사님꺼적용
 					break;
 				case 3:	// 구직자메뉴로 돌아가기
 					exit = true;
 					break;
 				default:	// 다른것을 입력할 경우
-					System.out.println();
+					System.out.println("[경고]메뉴에 있는 번호를 입력해주세요.");
 					break;
 				}
 
@@ -719,8 +719,8 @@ public class Ctrl_gujikja extends Ctrl_common{
 			
 		}	// end of private void title_company()-------------------
 		
-		// 강사님
-		// 업종검색
+		// 강사님 (업종검색)
+		// 결과만 도출되도록(검색값이 나오지 않아도 메뉴로 돌아간다.)
 		/*
 		   private void search_jobtype_company(Scanner sc, Company[] cp_arr) {
 		      
@@ -747,9 +747,10 @@ public class Ctrl_gujikja extends Ctrl_common{
 		   }// end of private void search_jobtype_company(Company[] cp_arr)------
 		*/
 		// 업종명 검색하기
-		
+		// 검색한 업종에 해당하는 회사가 없을 경우 재검색이 가능하도록 해주었다.
 		private void search_jobtype(Scanner sc, Company[] cp_arr) {
-			boolean exit = true;
+			boolean exit = false;
+			StringBuilder sb = new StringBuilder();
 			do {
 				System.out.print("▷ 업종명 : ");
 				String jobtype = sc.nextLine();	// 입력한 업종		
@@ -758,32 +759,47 @@ public class Ctrl_gujikja extends Ctrl_common{
 					if(cp_arr[i].getJob_type().toLowerCase().contains(search_jobtype.toLowerCase())) {
 						// 대소문자 구분을 위해 소문자로 바꿔서 검사하기
 						exit = true;
-						title_company();
-						System.out.println(cp_arr[i].getInfo() + "\n");
-					} else {
-						exit = false;
-						System.out.println("검색하시려는 " + jobtype + "은 없습니다.");
-						break;
-					}	// end of if~else------------
+						sb.append(cp_arr[i].getInfo() + "\n");	// 해당한 업종 쌓기)
+					} 
 				}	// end of for------
-			} while (exit);	// end of do~while------------		
+				if(!exit)	// 해당하는 것이 없다면
+					System.out.println("검색하시려는 " + search_jobtype + "은 없습니다.");
+			} while (!exit);	// end of do~while------------
+			title_company();
+			System.out.println(sb.toString());
 		}	// end of private void search_jobtype(Scanner sc, Company[] cp_arr)------------
-		// 문제 : '제' 만 검색해도 나온다 / it 대소문자 구분도 하기!
 		
 	   //////////////////////////////////////////////////////////////////////////////////////////////////
 		// 자본금 검색하기
-		/*
+		// 검색한 자본금에 해당하는 회사가 없을 경우 재검색이 가능하도록 해주었다.
 		private void search_seedmoney(Scanner sc, Company[] cp_arr) {
 		boolean exit = false;
+		StringBuilder sb = new StringBuilder();
 		do {
-			System.out.print("▷ 자본금 : ");
-			long sc_seedmoney = Long.parseofLong(sc.nextLine());	// 입력한 자본금
-		
+			try {
+				System.out.print("▷ 자본금 : ");
+				long seedmoney = Long.parseLong(sc.nextLine());	// 입력한 자본금
+				for(int i=0; i<Company.count; i++) {
+					if(cp_arr[i].getSeed_money() >= seedmoney) {	// 입력한 자본금 이상이라면
+						exit = true;
+						sb.append(cp_arr[i].getInfo() + "\n");	// 해당 회사의 정보 쌓기
+					}
+				}	// end of for-------
+				if(!exit)	// 해당 회사가 없다면
+					System.out.println("자본금이 " + seedmoney + "이상인 회사는 없습니다.");
+			} catch(NumberFormatException e) {
+				System.out.println("올바른 수를 입력해주세요");
+			}	// end of try~catch----------
 		} while (!exit);	// end of do~while------------		
+		
+		// 해당 자본금이 있는 경우 탈출
+		title_company();
+		System.out.println(sb.toString());
 		}	// end of private void search_seedmoney(Scanner sc, Company[] cp_arr)------
-		*/	
-
-		   // 자본금검색
+			
+/*
+		   // 강사님
+		   // 결과만 도출되도록(검색값이 나오지 않아도 메뉴로 돌아간다.)
 	   private void search_seedmoney_company(Scanner sc, Company[] cp_arr) {
 	      
 	      System.out.print("▷ 자본금 : ");
@@ -815,5 +831,5 @@ public class Ctrl_gujikja extends Ctrl_common{
 	      }
 	      
 	   }// end of private void search_seedmoney_company(Company[] cp_arr)------
-
+*/
 }
