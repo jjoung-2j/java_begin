@@ -1,4 +1,4 @@
-package my.day15.d.abstract_class;
+package my.day16.d.INTERFACE;
 
 import java.util.Scanner;
 
@@ -6,45 +6,45 @@ public class Main_gujikja_company {
 
 	public static void main(String[] args) {
 		
-		Gujikja[] gu_arr = new Gujikja[5];
+		CommonMember[] cmbr_arr = new CommonMember[9];
 		
 		///////////////////////////////////////////////////////////
-		Gujikja gu1 = new Gujikja();
+		Gujikja_imple gu1 = new Gujikja_imple();
 		gu1.setId("eomjh");		// 생성되어진 인스턴시 gu1 에 메소드를 통해 아이디 입력
 										// 메소드를 통하지 않을시 String 타입이면 무조건 OK 되기 때문에 설정한 값에 만족하지 않더라도 출력이 된다.
 	    gu1.setPasswd("qWer1234$");
 	    gu1.setName("엄정화");
 	    gu1.setJubun("8610202");
-		gu_arr[Gujikja.count++] = gu1;		// 구직자 클래스에 가서 static count 선언하기
+		cmbr_arr[CommonMember.count++] = gu1;		// 구직자 클래스에 가서 static count 선언하기
 	    
-	    Gujikja gu2 = new Gujikja();
+	    Gujikja_imple gu2 = new Gujikja_imple();
 	    gu2.setId("leess");
 	    gu2.setPasswd("abCd12345$");
 	    gu2.setName("이순신");
 	    gu2.setJubun("8601201");
-	    gu_arr[Gujikja.count++] = gu2;
+	    cmbr_arr[CommonMember.count++] = gu2;
 	    
-	    Gujikja gu3 = new Gujikja();
+	    Gujikja_imple gu3 = new Gujikja_imple();
 	    gu3.setId("chaew");
 	    gu3.setPasswd("aSdf1234$");
 	    gu3.setName("차은우");
 	    gu3.setJubun("0106203");
-	    gu_arr[Gujikja.count++] = gu3;		// 3명으로 나옴, 3명이 저장되어있다!
+	    cmbr_arr[CommonMember.count++] = gu3;		// 3명으로 나옴, 3명이 저장되어있다!
 	    
 	    ////////////////////////////////////////////////////////////////////////
 	    
-	    Company[] cp_arr = new Company[4];
 	    
-	    Company cp1 = new Company();
+	    
+	    Company_imple cp1 = new Company_imple();
 	    cp1.setId("samsung");
 	    cp1.setPasswd("Abcd1234$");
 	    cp1.setName("삼성");
 	    cp1.setBusiness_number("8123456789");
 	    cp1.setJob_type("제조업");
 	    cp1.setSeed_money(8000000000L);
-	    cp_arr[Company.count++] = cp1;
+	    cmbr_arr[CommonMember.count++] = cp1;
 	    
-	    Company cp2 = new Company();
+	    Company_imple cp2 = new Company_imple();
 	    cp2.setId("lg");
 	    cp2.setPasswd("Abcd007$");
 	    cp2.setName("엘지");
@@ -52,38 +52,43 @@ public class Main_gujikja_company {
 	    cp2.setJob_type("IT");
 	    cp2.setSeed_money(7000000000L);
 	    
-	    cp_arr[Company.count++] = cp2;
+	    cmbr_arr[CommonMember.count++] = cp2;
 
 	    ///////////////////////////////////////////////////////////////////////
 	    
-	    Recruit[] rc_arr = new Recruit[10];		// 사원모집 10개 가능하도록 설정
+	    /*
+	    Recruit_imple[] rc_arr = new Recruit_imple[10];		// 사원모집 10개 가능하도록 설정
 	    										// 지금은 배열, 나중에는 무한대 ㄱㄱ
-	    Recruit rc1 = new Recruit();
+	    */
+	    // 대신 이렇게 사용
+	    Recruit[] rc_arr = new Recruit_imple[10];
+	    // Recruit rc1 = new Recruit_imple[10];=> 오류! Recruit 안에 메소드가 달리 없기 때문
+	    Recruit_imple rc1 = new Recruit_imple();
 	    rc1.setCp(cp1);								// 삼성이라고 설정
 	    rc1.setSubject("성실한 사무직원을 채용합니다.");	// 채용제목
 	    rc1.setWork_type("사무직");					// 채용분야(근무형태)
 	    rc1.setCnt(2);								// 인원
 	    rc1.setYearpay(4000);						// 연봉
 	    rc1.setFinish_day("20241208");				// 마감일자
-	    rc_arr[Recruit.count++] = rc1;
+	    rc_arr[Recruit_imple.count++] = rc1;
 	    
-	    Recruit rc2 = new Recruit();
+	    Recruit_imple rc2 = new Recruit_imple();
 	    rc2.setCp(cp2);								// 엘지라고 설정
 	    rc2.setSubject("우수한 기술직원을 채용합니다.");	// 채용제목
 	    rc2.setWork_type("기술직");					// 채용분야(근무형태)
 	    rc2.setCnt(5);								// 인원
 	    rc2.setYearpay(4500);						// 연봉
 	    rc2.setFinish_day("20241207");				// 마감일자
-	    rc_arr[Recruit.count++] = rc2;
+	    rc_arr[Recruit_imple.count++] = rc2;
 	    
-	    Recruit rc3 = new Recruit();
+	    Recruit_imple rc3 = new Recruit_imple();
 	    rc3.setCp(cp2);								// 엘지라고 설정
 	    rc3.setSubject("참신한 영업직원을 채용합니다.");	// 채용제목
 	    rc3.setWork_type("영업직");					// 채용분야(근무형태)
 	    rc3.setCnt(10);								// 인원
 	    rc3.setYearpay(5000);						// 연봉
 	    rc3.setFinish_day("20241202");				// 마감일자
-	    rc_arr[Recruit.count++] = rc3;
+	    rc_arr[Recruit_imple.count++] = rc3;
 	    
 	    ////////////////////////////////////////////////////////////////////////
 	    
@@ -127,9 +132,9 @@ public class Main_gujikja_company {
 	    ////////////////////////////////////////////////////////////////////////
 	    
 	    Scanner sc = new Scanner(System.in);
-	    Ctrl_common ctrl_common = new Ctrl_common();
-	    Ctrl_gujikja ctrl_gu = new Ctrl_gujikja();
-	    Ctrl_company ctrl_cp = new Ctrl_company();
+	    Ctrl_common ctrl_common = new Ctrl_common_imple();
+	    Ctrl_gujikja ctrl_gu = new Ctrl_gujikja_imple();
+	    Ctrl_company ctrl_cp = new Ctrl_company_imple();
 	    
 	    String str_menuno ="";
 	    do {
@@ -138,28 +143,28 @@ public class Main_gujikja_company {
 			
 			switch (str_menuno) {
 			case "1":	// 구직자 회원가입
-				ctrl_gu.register(sc, gu_arr);
+				ctrl_gu.register(sc, cmbr_arr);
 				break;
 				
 			case "2":	// 구인회사 회원가입
-				ctrl_cp.register(sc,cp_arr);
+				ctrl_cp.register(sc, cmbr_arr);
 				break;
 			case "3":	// 구직자 로그인
-				Gujikja login_gu = ctrl_gu.login(sc, gu_arr);
+				CommonMember login_gu = ctrl_common.login(sc, cmbr_arr, 1);
 				
 				if(login_gu != null) {
 					System.out.println(">> 구직자 " + login_gu.getName() +"님 로그인 성공 ^^ <<\n");
-					ctrl_gu.gu_menu(sc, login_gu, cp_arr, rc_arr, rcApply_arr);	// 구직자 전용메뉴
+					ctrl_gu.gu_menu(sc, (Gujikja_imple)login_gu, cmbr_arr, rc_arr, rcApply_arr);	// 구직자 전용메뉴
 				} else {
 					System.out.println(">> 구직자로 로그인 실패 ㅜㅜ <<\n");
 				}
 				break;	// switch 문을 빠져나간다.
 			case "4":	// 구인회사 로그인
-				Company login_cp = ctrl_cp.login(sc, cp_arr);
+				CommonMember login_cp = ctrl_common.login(sc, cmbr_arr, 2);
 				
 				if(login_cp != null) {
 					System.out.println(">> 구인회사 " + login_cp.getName() +"기업 로그인 성공 ^^ <<\n");
-					ctrl_cp.cp_menu(sc, login_cp, gu_arr, rc_arr, rcApply_arr);	// 구인회사 전용메뉴
+					ctrl_cp.cp_menu(sc, (Company_imple)login_cp, cmbr_arr, rc_arr, rcApply_arr);	// 구인회사 전용메뉴
 																	// 구인회사는 구직자를 search , 모집공고 올림
 				} else {
 					System.out.println(">> 구인회사로 로그인 실패 ㅜㅜ <<\n");

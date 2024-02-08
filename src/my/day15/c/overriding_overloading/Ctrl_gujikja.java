@@ -1,6 +1,9 @@
 package my.day15.c.overriding_overloading;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Ctrl_gujikja extends Ctrl_common{
@@ -852,25 +855,41 @@ public class Ctrl_gujikja extends Ctrl_common{
 				// 60000/10000		6만원
 				// 123456000/10000	12345.6
 				StringBuilder sb = new StringBuilder();		// 채용공고를 쌓을려고 한다.
-				
-				for(int i=0; i<Recruit.count; i++) {
-					sb.append(rc_arr[i].getRecruit_no() + "\t\t"
-							+ rc_arr[i].getCp().getName() + "\t"
-							+ rc_arr[i].getCp().getJob_type() + "\t"
-							+ new DecimalFormat("#,###").format(rc_arr[i].getCp().getSeed_money()) + "원\t"		// 3자리마다 콤마찍어서 나오게하기
-							+ rc_arr[i].getWork_type() + "\t    "
-							+ rc_arr[i].getCnt() + "\t"
-							
-							+ rc_arr[i].getRegister_day().substring(0, 4) +"-" 		// yy-MM-dd 처럼 중간에 '-'를 넣으려고 한다.
-							+ rc_arr[i].getRegister_day().substring(4, 6) +"-" 
-							+ rc_arr[i].getRegister_day().substring(6) + "\t"
-							
-							+ rc_arr[i].getFinish_day().substring(0, 4) +"-" 		// yy-MM-dd 처럼 중간에 '-'를 넣으려고 한다.
-							+ rc_arr[i].getFinish_day().substring(4, 6) +"-" 
-							+ rc_arr[i].getFinish_day().substring(6) + "\n");
-							
-				}	// end of for----------
-				
+				try {
+					
+					
+					Date now = new Date();
+					SimpleDateFormat sdft = new SimpleDateFormat("yyyyMMdd");
+					Date today = sdft.parse(sdft.format(now));	// "20240207" ==> 20240207
+					// sdft.format(now);
+					// String str_now = sdft.format(now);	// "20240207"
+					
+					for(int i=0; i<Recruit.count; i++) {
+						
+						Date date_finish_day = sdft.parse(rc_arr[i].getFinish_day());	// String -> Date 타입 변환
+						
+						// == !채용마감일자.before(오늘날짜)
+						 if(!date_finish_day.before(today)) {
+						// if(rc_arr[i].getFinish_day() != null) { 		// 채용마감일이 오늘날짜 이후 
+							 
+						sb.append(rc_arr[i].getRecruit_no() + "\t\t"
+								+ rc_arr[i].getCp().getName() + "\t"
+								+ rc_arr[i].getCp().getJob_type() + "\t"
+								+ new DecimalFormat("#,###").format(rc_arr[i].getCp().getSeed_money()) + "원\t"		// 3자리마다 콤마찍어서 나오게하기
+								+ rc_arr[i].getWork_type() + "\t    "
+								+ rc_arr[i].getCnt() + "\t"
+								
+								+ rc_arr[i].getRegister_day().substring(0, 4) +"-" 		// yy-MM-dd 처럼 중간에 '-'를 넣으려고 한다.
+								+ rc_arr[i].getRegister_day().substring(4, 6) +"-" 
+								+ rc_arr[i].getRegister_day().substring(6) + "\t"
+								
+								+ rc_arr[i].getFinish_day().substring(0, 4) +"-" 		// yy-MM-dd 처럼 중간에 '-'를 넣으려고 한다.
+								+ rc_arr[i].getFinish_day().substring(4, 6) +"-" 
+								+ rc_arr[i].getFinish_day().substring(6) + "\n");
+						 }
+					}	// end of for----------
+				}catch (ParseException e) {
+				} 
 				System.out.println("-".repeat(90));
 				System.out.println("채용공고 순번     회사명     회사직종타입    자본금   채용분야(근무형태) 채용인원  등록일자  채용마감일자");
 				System.out.println("-".repeat(90));
@@ -890,16 +909,18 @@ public class Ctrl_gujikja extends Ctrl_common{
 					str_my_recruit_no += rcApply_arr[i].getRc().getRecruit_no() + ",";	// 채용공고순서
 			}	// end of for-----------------------
 			
-			// str_my_cruit_no = "1,3,2,";
-			str_my_recruit_no = str_my_recruit_no.substring(0, str_my_recruit_no.length()-1);
-			// str_my_cruit_no = "1,3,2"
-			
-			String[] my_recruit_no_arr = str_my_recruit_no.split("\\,");
-			// {"1","3","2"}
-			
-			if(my_recruit_no_arr.length == Recruit.count) {
-				System.out.println(">> 이미 모든 채용공고에 지원하셨으므로, 더 이상 채용지원 가능한 공고가 없습니다.");
-				return;	// 메소드 종료
+			if(str_my_recruit_no.length() > 0) {	// 응모한 경우가 있으면
+				// str_my_cruit_no = "1,3,2,";
+				str_my_recruit_no = str_my_recruit_no.substring(0, str_my_recruit_no.length()-1);
+				// str_my_cruit_no = "1,3,2"
+				
+				String[] my_recruit_no_arr = str_my_recruit_no.split("\\,");
+				// {"1","3","2"}
+				
+				if(my_recruit_no_arr.length == Recruit.count) {
+					System.out.println(">> 이미 모든 채용공고에 지원하셨으므로, 더 이상 채용지원 가능한 공고가 없습니다.");
+					return;	// 메소드 종료
+				}
 			}
 			
 			// == 채용공고번호는 채용공고로 올라온 번호만 입력해야 한다. == //

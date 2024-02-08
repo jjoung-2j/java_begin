@@ -64,7 +64,7 @@ public class Main_gujikja_company {
 	    rc1.setWork_type("사무직");					// 채용분야(근무형태)
 	    rc1.setCnt(2);								// 인원
 	    rc1.setYearpay(4000);						// 연봉
-	    rc1.setFinish_day("20240208");				// 마감일자
+	    rc1.setFinish_day("20241208");				// 마감일자
 	    rc_arr[Recruit.count++] = rc1;
 	    
 	    Recruit rc2 = new Recruit();
@@ -73,7 +73,7 @@ public class Main_gujikja_company {
 	    rc2.setWork_type("기술직");					// 채용분야(근무형태)
 	    rc2.setCnt(5);								// 인원
 	    rc2.setYearpay(4500);						// 연봉
-	    rc2.setFinish_day("20240207");				// 마감일자
+	    rc2.setFinish_day("20241207");				// 마감일자
 	    rc_arr[Recruit.count++] = rc2;
 	    
 	    Recruit rc3 = new Recruit();
@@ -82,7 +82,7 @@ public class Main_gujikja_company {
 	    rc3.setWork_type("영업직");					// 채용분야(근무형태)
 	    rc3.setCnt(10);								// 인원
 	    rc3.setYearpay(5000);						// 연봉
-	    rc3.setFinish_day("20240302");				// 마감일자
+	    rc3.setFinish_day("20241202");				// 마감일자
 	    rc_arr[Recruit.count++] = rc3;
 	    
 	    ////////////////////////////////////////////////////////////////////////

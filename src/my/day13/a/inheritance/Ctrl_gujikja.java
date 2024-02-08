@@ -714,7 +714,7 @@ public class Ctrl_gujikja extends Ctrl_common{
 		private void title_company() {
 			
 			System.out.println("=".repeat(70) +"\n"
-						+ " 회사명\t업종\t사업자등록번호\t자본금" + "\n" 
+						+ " 회사명\t업종\t사업자등록번호\t자본금\t\t등록일자" + "\n" 
 						+ "=".repeat(70));
 			
 		}	// end of private void title_company()-------------------

@@ -1,4 +1,4 @@
-package my.day13.a.inheritance;
+package my.day16.d.INTERFACE;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,14 +7,18 @@ import java.util.regex.Pattern;
 
 import my.util.MyUtil;
 
-public class CommonMember {
+public abstract class CommonMember implements Common {
 	
 	// Gujikja 클래스와 Company 클래스에서 공통으로 사용되어지는 field(속성) 생성하기
 	
+	private int type;				// Gujikja 와 Company 를 구분짓는 용도
+									// type 값이 1 이라면 Gujikja 라 보고, type 값이 2 이라면 Company 라고 보겠다.
 	private String id;        		// 아이디
 	private String passwd;        	// 비밀번호
 	private String name;          	// 성명
 	private String register_day;  	// 가입일자
+
+	static int count;	// Gujikja 객체 및 Company 객체가 생성되어진 개수를 알아오려는 용도
 	
 	// Gujikja 및 Company 클래스의 부모클래스인 CommonMember 클래스의 기본생성자
 	public CommonMember(){
@@ -27,6 +31,19 @@ public class CommonMember {
 	}
 	
 	// 캡슐화(EnCapsulation == 은닉화) 되어진 field 를 메소드를 통해 접근하도록 만들기 //
+	// === getter, setter === //
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		if(type == 1 || type ==  2) {
+			this.type = type;
+			// type 의 값이 1 이라면 Gujikja 라 보고,
+			// type 의 값이 2 이라면 Company 라 본다.
+		}
+	}	// end of public void setType(int type)--------
+	
 		// == getter , setter  == // 
 		public void setId(String id) {
 			
@@ -95,51 +112,7 @@ public class CommonMember {
 
 
 		public void setName(String name) {
-			// 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.
-		/* 내방법
-			boolean isName = true;
-			if(2 <= name.length() && name.length() <= 6) {
-				for(int i=0; i<name.length(); i++) {
-					if('가'> name.charAt(i) && name.charAt(i) < '힣') {
-						System.out.println("[경고] 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.");
-						isName = false;
-						break;	// 계속 반복검사할 이유가 없다.
-					}
-				}	// end of for-----------	
-				if(isName){
-				// 유효성 통과한 경우
-				this.name = name;	// 가~힣 사이 글자들 
-				}				
-			} else {
-				System.out.println("[경고] 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.");
-				isName = false;
-			}	// end of if~else---------------
-		}	// end of public void setName(String name)----------------
-		*/
-		// 강사님
-		
-			boolean isOnly_hangul = true;
-			if(name != null) {
-				char[] ch_arr = name.toCharArray();
-				for(char ch : ch_arr) {		// 확장형 for 문, 개선된 for 문 
-					if(!('가' <= ch && ch <= '힣')) {
-						isOnly_hangul = false;
-						break;
-					}
-				}	// end of for---------------
-				if(2 <= ch_arr.length && ch_arr.length <= 6 && isOnly_hangul) {
-					this.name = name;
-				} else {
-					System.out.println("[경고] 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.");
-				}	// end of if~else--------------------
-			}	// end of if---------------------
-		}	// end of public void setName(String name)----------------
-		
-/*		
-		// 또는 성명을 정규표현식으로 검사해보겠다.
-			//public void setName(String name) {
-			// 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.
-			
+			// 성명(회사명)은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.
 			// == 1. 정규표현식(Regular Expresiion) 패턴을 작성한다. == //
 			Pattern p = Pattern.compile("^[가-힣]{2,6}$");
 			
@@ -153,7 +126,7 @@ public class CommonMember {
 				System.out.println("[경고] 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.\n");
 			}	// end of if~else----------			
 		}	// end of public void setName(String name)----------------
-*/		
+		
 		public String getName() {
 			return name;
 		}	// end of public String getName()--------------------
@@ -162,10 +135,20 @@ public class CommonMember {
 				return register_day;
 			}	// end of public String getRegister_day()-----------
 
-		
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/*
+		// >> 미완성메소드(== 추상메소드 abstract method) << //
+		public abstract String getInfo();
+		*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	String parent_test(){
 		return "부모클래스에서 만들었어요. 그냥 연습이에요!!";
+	}
+
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
