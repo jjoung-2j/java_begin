@@ -173,8 +173,8 @@ public class ArrayList_main_1 {
 		List<String> str_list = new ArrayList<>();					
 		
 		str_list.add("마동석");		
-		// str_list.add("1234");			// 오류!!	
-		// str_list.add("1234.547");		// 오류!!	
+		// str_list.add(1234);			// 오류!!	
+		// str_list.add(1234.547);		// 오류!!	
 		// str_list.add(new Member());		// 오류!!	
 		str_list.add("마서석");		
 		str_list.add("마남석");		

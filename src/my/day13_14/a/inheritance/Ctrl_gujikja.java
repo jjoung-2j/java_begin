@@ -59,7 +59,7 @@ public class Ctrl_gujikja extends Ctrl_common{
 		// 주민번호는 필수 입력사항이면서 주민번호 조건에 맞을때까지 반복해야 한다.
 
 			do {
-				System.out.print("3.주민번호 : ");
+				System.out.print("4.주민번호 : ");
 				String jubun = sc.nextLine();
 				
 				gu.setJubun(jubun);

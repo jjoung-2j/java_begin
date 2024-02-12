@@ -16,7 +16,7 @@ public class Final_test_parent_1 {
 	
 	// 메소드에 final 을 붙이면 자식 클래스에서 메소드 오버라이딩(재정의)을 할 수 없게 된다.
 	final void rule() {
-		System.out.println("~~~ 정직하게 삽시나 ~~~");
+		System.out.println("~~~ 정직하게 삽시다 ~~~");
 	}
 	
 }

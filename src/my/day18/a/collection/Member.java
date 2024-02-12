@@ -115,31 +115,31 @@ public class Member {
 		String now_str = sdformat.format(now);		// 오늘을 보기 쉬운 타입으로 변환하기
 		
 		// 세기파악하기 (19,20)
-		int centry = ("1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)))?19:20;
+		String centry = ("1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)))?"19":"20";
 		
-		// 생년월일
-		String birth = centry+ jubun.substring(2, 6);
+		// 생년 ( Ex. 19990520 )
+		String birth = centry+ jubun;
 		
 		try {
 			// 올해 생일
-			Date year_birth;
-			year_birth = sdformat.parse(birth);	// Date 타입으로 변환
+			Date year_birth; // ( Ex. 0520 )
+			year_birth = sdformat.parse(birth.substring(4));	// Date 타입으로 변환
 
-			// 이번년도 파악하기
-			String now_year = now_str.substring(0, 5);
+			// 이번년도 파악하기	( Ex. 1999 )
+			String now_year = now_str.substring(0, 4);
 			
-			// 이번년도 Date 타입으로 바꾸기
-			Date nowYear;
-			nowYear = sdformat.parse(now_year);
+			// 오늘 날짜 Date 타입으로 바꾸기 (Ex. 0520)
+			Date now_day;
+			now_day = sdformat.parse(now_str.substring(4));
 		
 			// 올해 생일이 오늘 이후라면
-			if(year_birth.after(nowYear)) {
-				return Integer.parseInt(now_year) - Integer.parseInt(birth) -1;
+			if(year_birth.after(now_day)) {
+				return Integer.parseInt(now_year) - Integer.parseInt(birth.substring(0, 4)) -1;
 			} else {
-				return Integer.parseInt(now_year) - Integer.parseInt(birth);
+				return Integer.parseInt(now_year) - Integer.parseInt(birth.substring(0, 4));
 			}
 		} catch (ParseException e) {	// 주민번호 가 올바르게 입력되지 않은 경우(실제 날짜에 없는 경우)
-			return 0;
+			return -1;
 		}
 	}
 */
@@ -169,7 +169,7 @@ public class Member {
 	}	// end of gender()-------------
 	
 	// 메소드의 오버라이딩(재정의)
-/*	
+/*
 	public String toString() {
 		return "=== " + name + "님의 회원정보 ===\n"
 				+ "1. 아이디 : " + id + "\n"
@@ -179,7 +179,7 @@ public class Member {
 				+ "5. 성별 : " + gender() +"\n"
 		 		+ "6. 만나이 : " + age() + "세\n";
 	}	// end of public String toString()---------------
-*/	
+*/
 	
 	public String toString() {
 		return "=== " + name + "님의 회원정보 ===\n"

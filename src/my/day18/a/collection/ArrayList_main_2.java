@@ -83,8 +83,20 @@ public class ArrayList_main_2 {
 		    	  System.out.println(i);
 	      }	// end of for-----------------
 	      
-	      // 존재하지 않는 성 표기하기
+	      // 강사님
 	      boolean is_existence = false;
+	      is_existence = false;
+	      for(Member mbr : mbrList) {
+	    	  if(mbr.getName().startsWith("김")) {
+	    		  is_existence = true;
+	    		  System.out.println(mbr);
+	    	  }
+	      }	// end of for-----------
+    	  if(!is_existence) 
+    		  System.out.println("김씨는 없습니다.");
+    		  
+	      // 존재하지 않는 성 표기하기
+    	  is_existence = false;
 	      for(Member mbr : mbrList) {
 	    	  if(mbr.getName().startsWith("이")) {
 	    		  is_existence = true;
@@ -109,18 +121,19 @@ public class ArrayList_main_2 {
 		      }
 	      }	// end of for-----------------
 	      
-	      // 강사님
+	      // 방법2
 	      is_existence = false;
+	      
 	      for(Member mbr : mbrList) {
-	    	  if(mbr.getName().startsWith("김")) {
+	    	  if(mbr.getName().endsWith("순신")) {
 	    		  is_existence = true;
 	    		  System.out.println(mbr);
 	    	  }
-	      }	// end of for-----------
-    	  if(!is_existence) {
-    		  System.out.println("김씨는 없습니다.");
-    	  }
-    	  
+	      }	// end of for-------
+
+    	  if(!is_existence)
+    		  System.out.println("이름이 순신인 회원은 없습니다.");
+    		  
     	  System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     	  
     	  // *** ArrayList 타입인 mbrList 에 새로운 Member 객체 추가시

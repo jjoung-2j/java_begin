@@ -9,8 +9,7 @@ public class Main_final_2 {
 		ft.id = "leess";
 		ft.name = "이순신";
 		// ft.PI = 23.3235325432;		// final 이므로 새로운 값을 할당할 수 없기에 오류이다.!!
-		
-		
+			
 
 	}
 
