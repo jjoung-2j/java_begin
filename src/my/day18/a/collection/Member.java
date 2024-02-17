@@ -105,44 +105,6 @@ public class Member {
 		}	// end of try~catch-----------
 	}	// end of public int age()-----------------
 
-//비교하기 (오류)
-/*
-	private int age;
-	
-	public int age() {
-		Date now = new Date();
-		SimpleDateFormat sdformat = new SimpleDateFormat("yyyyMMdd");
-		String now_str = sdformat.format(now);		// 오늘을 보기 쉬운 타입으로 변환하기
-		
-		// 세기파악하기 (19,20)
-		String centry = ("1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)))?"19":"20";
-		
-		// 생년 ( Ex. 19990520 )
-		String birth = centry+ jubun;
-		
-		try {
-			// 올해 생일
-			Date year_birth; // ( Ex. 0520 )
-			year_birth = sdformat.parse(birth.substring(4));	// Date 타입으로 변환
-
-			// 이번년도 파악하기	( Ex. 1999 )
-			String now_year = now_str.substring(0, 4);
-			
-			// 오늘 날짜 Date 타입으로 바꾸기 (Ex. 0520)
-			Date now_day;
-			now_day = sdformat.parse(now_str.substring(4));
-		
-			// 올해 생일이 오늘 이후라면
-			if(year_birth.after(now_day)) {
-				return Integer.parseInt(now_year) - Integer.parseInt(birth.substring(0, 4)) -1;
-			} else {
-				return Integer.parseInt(now_year) - Integer.parseInt(birth.substring(0, 4));
-			}
-		} catch (ParseException e) {	// 주민번호 가 올바르게 입력되지 않은 경우(실제 날짜에 없는 경우)
-			return -1;
-		}
-	}
-*/
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
 	public void getInfo() {
