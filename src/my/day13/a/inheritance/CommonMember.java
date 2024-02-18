@@ -97,21 +97,27 @@ public class CommonMember {
 		public void setName(String name) {
 			// 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.
 		/* 내방법
+			boolean isName = true;
 			if(2 <= name.length() && name.length() <= 6) {
 				for(int i=0; i<name.length(); i++) {
 					if('가'> name.charAt(i) && name.charAt(i) < '힣') {
 						System.out.println("[경고] 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.");
+						isName = false;
 						break;	// 계속 반복검사할 이유가 없다.
 					}
-					this.name = name;	// 가~힣 사이 글자들 
-				}	// end of for-----------					
+				}	// end of for-----------	
+				if(isName){
+				// 유효성 통과한 경우
+				this.name = name;	// 가~힣 사이 글자들 
+				}				
 			} else {
 				System.out.println("[경고] 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.");
+				isName = false;
 			}	// end of if~else---------------
 		}	// end of public void setName(String name)----------------
 		*/
 		// 강사님
-		/*
+		
 			boolean isOnly_hangul = true;
 			if(name != null) {
 				char[] ch_arr = name.toCharArray();
@@ -128,8 +134,8 @@ public class CommonMember {
 				}	// end of if~else--------------------
 			}	// end of if---------------------
 		}	// end of public void setName(String name)----------------
-		*/
-			
+		
+/*		
 		// 또는 성명을 정규표현식으로 검사해보겠다.
 			//public void setName(String name) {
 			// 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.
@@ -147,7 +153,7 @@ public class CommonMember {
 				System.out.println("[경고] 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.\n");
 			}	// end of if~else----------			
 		}	// end of public void setName(String name)----------------
-		
+*/		
 		public String getName() {
 			return name;
 		}	// end of public String getName()--------------------

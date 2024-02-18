@@ -88,13 +88,9 @@ public class MyUtil {
 		for(int i=0;i<length;i++) {
 			// 암호에 한글이 들어가 있는지 알아본다.
 			char ch = passwd.charAt(i);
-			if('가' <= ch && ch <= '힣') {	// 한글이 들어가지 않게한다.
+			if('가' <= ch && ch <= '힣') {
 				return false;
 			}
-			// 강사님 X
-			// 혼자 추가해보기
-			if(' ' == ch)
-				return false;
 			
 			if(Character.isUpperCase(ch))	// 영문대문자일 경우
 				flag_upper = true;
@@ -187,7 +183,6 @@ public class MyUtil {
 		
 		int comma_len = (origin_arr.length%3==0)?origin_arr.length/3-1:origin_arr.length/3;
 		char[] result_arr = new char[origin_arr.length + comma_len];
-		// 콤마(,)의 개수를 포함하면 배열길이가 늘어나므로 새로운 배열타입 선언
 		/*
 			-------------------------------------
 			| 2 | , | 5 | 0 | 0 | , | 0 | 0 | 0 |	// 7%3 = 2
@@ -198,10 +193,10 @@ public class MyUtil {
 		 */
 		
 		for(int i=origin_arr.length-1, j=result_arr.length-1, count=1 ; i>=0; i--, j--, count++) {	// 길이-1 : 맨마지막 index	반복허용 i>=0
-			if(count%4 != 0) {	// 4에 , 가 들어가니까 4가 아니면
+			if(count%4 != 0) {
 				result_arr[j] = origin_arr[i];	// result arr 은 , 가 있고 origin_arr 은 , 가 없기에 길이가 다르다.
 			// i가 반복되어지는 횟수, j는 값 count 몇번재인지 확인
-			} else {	// , 가 들어갈경우 count 4
+			} else {
 				result_arr[j] = ',';
 				i++; 	// , 이 들어서면 i가 증감식으로 i-- 되기때문에 i++를 해줘야 제자리가 된다.(유사 로또)
 			//|'2'|','|'5'|'0'|'0'|','|'0'|'0'|'0'|	// char 타입이기에 공백이 들어옴
@@ -217,10 +212,13 @@ public class MyUtil {
 		// 하나 이어야 한다.
 		if(jubun.length() != 7) {
 			return false;
-		} else if( !("1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)) ||
+		}
+		
+		else if( !("1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)) ||
 				"3".equals(jubun.substring(6)) || "4".equals(jubun.substring(6)) )) {
 			return false;
-		} else {	// 주민번호가 7자리이며, 마지막수가 1234일경우
+		}
+		else {
 			String str_birthday = "";	// 생년월일	(String 타입)
 			if("1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)))
 				str_birthday = "19" + jubun.substring(0,6);		// 예 990520 생년월일
@@ -265,6 +263,36 @@ public class MyUtil {
 		}	// end of try~catch-------------------------
 	}	// end of if-----------------------------
 }	// end of public static boolean isCheckJubun(String jubun)----------------------
-	
-	
+
+	// == 입력받은 주민번호(7자리)를 가지고 만나이를 구해주는 메소드 == //
+	public static int age(String jubun) {
+		Date now = new Date();
+		SimpleDateFormat sdfmt = new SimpleDateFormat("yyyyMMdd");
+		String str_today = sdfmt.format(now);
+		// 세기 파악하기
+		String centry = ("1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)))?"19":"20";
+		// 생일 파악하기
+		String str_birthday = centry + jubun.substring(0, jubun.length()-1);
+		//						"19720910"	"20020320"
+		// 올해 생일
+		String str_nowYear_birthday = String.format("%tY", now) + jubun.substring(2,jubun.length()-1);
+		// 						"2024" + "0910"		"2024" + "0320"
+		
+		try {
+			Date date_today = sdfmt.parse(str_today);
+			Date date_nowYear_birthday = sdfmt.parse(str_nowYear_birthday);
+			
+			int n_nowYear = Integer.parseInt(String.format("%tY", now));
+			int n_birthYear = Integer.parseInt(str_birthday.substring(0, 4));
+			
+			if(date_nowYear_birthday.compareTo(date_today) > 0 ) {
+				return n_nowYear - n_birthYear -1;
+			} else {
+				return n_nowYear - n_birthYear -1;
+			}
+		} catch(ParseException e) {
+			return -1;
+		}	// end of try~catch-----------
+	}	// end of public static int age(String jubun)-------------------
+
 }	// end of public class MyUtil-----------------

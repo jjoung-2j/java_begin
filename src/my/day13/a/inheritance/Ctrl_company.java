@@ -252,7 +252,7 @@
 				
 				if(!new_seedmoney.equals("")) {
 					if(Long.valueOf(new_seedmoney).equals(login_cp.getSeed_money()))
-						System.out.println(">> 기존 사업자번호와 동일하므로 변경이 불가합니다.!!");
+						System.out.println(">> 기존 자본금과 동일하므로 변경이 불가합니다.!!");
 					else
 						login_cp.setSeed_money(Long.valueOf(new_seedmoney));
 						exit_seedmoney = true;
